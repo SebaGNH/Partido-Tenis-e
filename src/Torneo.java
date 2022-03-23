@@ -23,12 +23,20 @@ public class Torneo {
         boolean bandera = false;
         
         int set = 0;
+        String nombreJugador = "";
+        
+
         do {
+            
+            nombreJugador = this.getJugadorQueTieneSaque(nombreJugador);
+            resultados += "\nTiene el saque el jugador: "+ nombreJugador;
+            resultados += "\n"+jugadores[0].getNombreJugador()+" - "+jugadores[1].getNombreJugador();
+
             int puntosJugador0 = 0;
             int puntosJugador1 = 0;
             String puntos0 = " 0";
             String puntos1= " 0";
-        
+            
             int posibilidad0 = 0;
             int posibilidad1 = 0;
         
@@ -96,9 +104,29 @@ public class Torneo {
     }
     
     
-
-
-    
-    
-    
+    public String getJugadorQueTieneSaque(String nombreJugador){
+        String jugador = nombreJugador;
+        boolean salida = true;
+        
+        if (jugador.equals("")) {
+        do {  
+            if (jugadores[0].getSaqueInicial() > jugadores[1].getSaqueInicial() ) {
+                jugador = jugadores[0].getNombreJugador();
+                salida = false;
+            }else if (jugadores[0].getSaqueInicial() < jugadores[1].getSaqueInicial()) {
+                jugador = jugadores[1].getNombreJugador();
+                salida = false;
+            }else{
+                salida = true;
+            }
+        } while (salida);
+        
+        }else if(jugador.equals(jugadores[1].getNombreJugador())){
+                jugador = jugadores[0].getNombreJugador();
+            
+                }else if(jugador.equals(jugadores[0].getNombreJugador())){
+                    jugador = jugadores[1].getNombreJugador();
+                }
+        return jugador;
+    }
 }

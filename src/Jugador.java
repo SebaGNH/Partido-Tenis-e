@@ -35,4 +35,8 @@ public class Jugador {
     }
     
     
+    public int getSaqueInicial(){
+        return (int)(Math.random()* 100);
+    }
+    
 }
