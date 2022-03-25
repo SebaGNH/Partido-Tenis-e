@@ -54,13 +54,7 @@ public class Torneo {
     }
 
 
-    //---------------------------------------------------------------------------------------------------------------
-    
-
-/*   public Torneo(int cantJugadores) {        
-        this.jugadores = new Jugador[cantJugadores];
-    } */
-    
+    // Metodos ---------------------------------------------------------------------------------------------------------------
     
     
     public String getGanadorDelPunto(){  
@@ -103,7 +97,7 @@ public class Torneo {
                         case 5: puntos0 = "Win"; game0 ++; break;
                     }
                     if (puntosJugador0 == 4) {                    
-                        if (puntos1.equals(" AD")) {
+                        if (puntos1.equals("AD ")) {
                             puntosJugador1 = 3;
                             puntosJugador0 = 3;
                             puntos0 = " 40";
@@ -121,7 +115,7 @@ public class Torneo {
                         case 5: puntos1 = "Win";game1 ++; break;
                     }
                     if (puntosJugador1 == 4) {
-                        if (puntos0.equals("AD ")) {
+                        if (puntos0.equals(" AD")) {
                             puntosJugador1 = 3;
                             puntosJugador0 = 3;
                             puntos0 = " 40";
@@ -133,23 +127,24 @@ public class Torneo {
                 }
                 resultados += "\n"+puntos0 +"  -  "+ puntos1;
             } while (puntosJugador0 <5 && puntosJugador1 <5 );
-            resultados += "\n---------\nResultado\n "+ game0 + "  -  "+game1+" \n---------\n";
+            resultados += "\n ---------\n Resultado\n "+ game0 + "  -  "+game1+" \n ---------\n";
             set ++;
             
-            // cuando alguno de los 2 llega al sets, siempre con una ventaja de 2 juegos ganados
             
             
-            if ( game0 == this.cantSets || game1 == this.cantSets ) {
-                if (game0 > game1) {
+            
+            if ( game0 >= this.cantSets || game1 >= this.cantSets ) {
+                if (game0  > (game1 +1)) {
                     ganadorTorneo = jugadores[0].getNombreJugador();
-                }else{
+                    bandera = true;
+                }else if((game0 +1) < game1){
                     ganadorTorneo = jugadores[1].getNombreJugador();
+                    bandera = true;
+                }else{
+                    System.out.println("No ganó ninguno");
+                    bandera = false;
                 }
-                
-                bandera = true;
             } 
-            
-            
         } while (!bandera); 
         
         return resultados +"\nEl ganador del torneo es: "+ ganadorTorneo;
