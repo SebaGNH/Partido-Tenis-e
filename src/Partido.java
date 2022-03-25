@@ -12,9 +12,13 @@ public class Partido {
         String nombreTorneo = sc.next();
         //String nombreTorneo = "Gran Slam";
         
-        System.out.println("Indique la cantidad de sets");
-        int cantSets = sc.nextInt();
-        //int cantSets = 5;
+        int cantSets = -1;
+        do {
+            System.out.println("Indique si se jugarán 3 o 5 Sets");
+            cantSets = sc.nextInt();
+            //cantSets = 5;
+
+        }while(cantSets != 3 && cantSets != 5);
 
         int cantJugadores = 2;
 
@@ -35,6 +39,17 @@ public class Partido {
         }
         
         System.out.println(t.getGanadorDelPunto());
+
+        String revancha = "";
+        do{
+            System.out.println("¿Quiere jugar revancha?  si - no");
+            revancha = sc.next().toLowerCase();
+            if(revancha.equals("si")){
+                System.out.println(t.getGanadorDelPunto()+ ", revancha finalizada.");
+                revancha = "no";
+            }
+        }while(!revancha.equals("no"));
+
         sc.close();
     }
     

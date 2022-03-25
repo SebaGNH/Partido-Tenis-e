@@ -127,6 +127,7 @@ public class Torneo {
                 }
                 resultados += "\n"+puntos0 +"  -  "+ puntos1;
             } while (puntosJugador0 <5 && puntosJugador1 <5 );
+
             resultados += "\n ---------\n Resultado\n "+ game0 + "  -  "+game1+" \n ---------\n";
             set ++;
             
@@ -147,7 +148,8 @@ public class Torneo {
             } 
         } while (!bandera); 
         
-        return resultados +"\nEl ganador del torneo es: "+ ganadorTorneo;
+        resultados +="\nEl ganador del torneo es: "+ ganadorTorneo;
+        return resultados;
     }
     
     
