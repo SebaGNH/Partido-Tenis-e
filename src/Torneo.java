@@ -1,5 +1,54 @@
 public class Torneo {
-    Jugador [] jugadores;
+
+    private String nombreTorneo;
+    private int cantSets;
+    private Jugador [] jugadores;
+
+    
+    
+    public String getNombreTorneo() {
+        return nombreTorneo;
+    }
+    
+    public void setNombreTorneo(String nombreTorneo) {
+        this.nombreTorneo = nombreTorneo;
+    }
+    
+    public int getCantSets() {
+        return cantSets;
+    }
+    
+    public void setCantSets(int cantSets) {
+        this.cantSets = cantSets;
+    }
+    
+    public Jugador[] getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(Jugador[] jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public Torneo(String nombreTorneo, int cantSets, int cantJugadores) {
+        this.jugadores = jugadores;
+        this.nombreTorneo = nombreTorneo;
+        this.cantSets = cantSets;
+        this.jugadores = new Jugador[cantJugadores];
+    }
+
+    @Override
+    public String toString() {
+        return "Torneo{" + "jugadores=" + jugadores + ", nombreTorneo=" + nombreTorneo + ", cantSets=" + cantSets + '}';
+    }
+    
+    
+    
+
+
+
+    //---------------------------------------------------------------------------------------------------------------
+    
 
     public Torneo(int cantJugadores) {        
         this.jugadores = new Jugador[cantJugadores];
