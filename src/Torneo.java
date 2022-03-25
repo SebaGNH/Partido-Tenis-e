@@ -84,7 +84,7 @@ public class Torneo {
                 }
                 resultados += "\n"+puntos0 +"  -  "+ puntos1;
             } while (puntosJugador0 <5 && puntosJugador1 <5 );
-            resultados += "\n---------\n "+ game0 + "  -  "+game1+" \n---------\n";
+            resultados += "\n---------\nResultado\n"+ game0 + "  -  "+game1+" \n---------\n";
             set ++;
             
             // cuando alguno de los 2 llega al sets, siempre con una ventaja de 2 juegos ganados

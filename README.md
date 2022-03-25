@@ -53,7 +53,8 @@ where not exists (
                     select id_rubro
                     from producto p
                     where year(p.fecha_creacion) = year(getdate()) 
-                    and (month(p.fecha_creacion) = month(getdate())-1 or month(p.fecha_creacion) = month(getdate()))
+                    and (month(p.fecha_creacion) = month(getdate())-1 
+                    or month(p.fecha_creacion) = month(getdate()))
                     and r.id_rubro = id_rubro
                 )
 ```
@@ -88,8 +89,9 @@ Una vez finalizado el partido:
 * Imprimir el resultado en formato de partido de tenis
 
 * Imprimir el nombre del ganador y del torneo
-* Preguntar al usuario si quiere jugar la revancha, en caso de que la respuesta sea si, simular 
-nuevamente.
+
+* Preguntar al usuario si quiere jugar la revancha, en caso de que la respuesta sea si, simular nuevamente.
+
 A considerar
 * No se evaluará de forma estricta la interfaz, por lo que puede hacerse por consola.
 * No es necesario que haya persistencia
