@@ -57,99 +57,111 @@ public class Torneo {
     // Metodos ---------------------------------------------------------------------------------------------------------------
     
     
-    public String getGanadorDelPunto(){  
-        int game0 = 0;
-        int game1 = 0;
+    public String getGanadorDelPunto(){ 
         
-        String resultados = "";
-        boolean bandera = false;
-        
+        String resultados = "";        
         int set = 0;
         String nombreJugador = "";
         String ganadorTorneo = "";
-        
 
-        do {
-            
-            nombreJugador = this.getJugadorQueTieneSaque(nombreJugador);
-            resultados += "\nTiene el saque el jugador: "+ nombreJugador;
-            resultados += "\n"+jugadores[0].getNombreJugador()+" - "+jugadores[1].getNombreJugador();
+        String resultadosJugador0 = "";
+        String resultadosJugador1 = "";
 
-            int puntosJugador0 = 0;
-            int puntosJugador1 = 0;
-            String puntos0 = "  0";
-            String puntos1 = " 0 ";
-            
-            int posibilidad0 = 0;
-            int posibilidad1 = 0;
+        int juegos = 0;
         
+        for (int i = 0; i < 5; i++) {
+            int game0 = 0;
+            int game1 = 0;
+            boolean bandera = false;
+
             do {
-                posibilidad0 = jugadores[0].getPosibilidadDeGanar();
-                posibilidad1 = jugadores[1].getPosibilidadDeGanar();
+                
+                nombreJugador = this.getJugadorQueTieneSaque(nombreJugador);
+                resultados += "\nTiene el saque el jugador: "+ nombreJugador;
+                resultados += "\n"+jugadores[0].getNombreJugador()+" - "+jugadores[1].getNombreJugador();
+
+                int puntosJugador0 = 0;
+                int puntosJugador1 = 0;
+                String puntos0 = "  0";
+                String puntos1 = " 0 ";
+                
+                int posibilidad0 = 0;
+                int posibilidad1 = 0;
+            
+                do {
+                    posibilidad0 = jugadores[0].getPosibilidadDeGanar();
+                    posibilidad1 = jugadores[1].getPosibilidadDeGanar();
 
 
-                if (posibilidad0 > posibilidad1) {  
-                    puntosJugador0 ++;
-                    switch (puntosJugador0) {
-                        case 1: puntos0 = " 15" ; break;
-                        case 2: puntos0 = " 30"; break;
-                        case 3: puntos0 = " 40"; break;
-                        case 5: puntos0 = "Win"; game0 ++; break;
+                    if (posibilidad0 > posibilidad1) {  
+                        puntosJugador0 ++;
+                        switch (puntosJugador0) {
+                            case 1: puntos0 = " 15" ; break;
+                            case 2: puntos0 = " 30"; break;
+                            case 3: puntos0 = " 40"; break;
+                            case 5: puntos0 = "Win"; game0 ++; break;
+                        }
+                        if (puntosJugador0 == 4) {                    
+                            if (puntos1.equals("AD ")) {
+                                puntosJugador1 = 3;
+                                puntosJugador0 = 3;
+                                puntos0 = " 40";
+                                puntos1 = "40 ";
+                            }else{
+                                puntos0 = " AD";
+                            }   
+                        }
+                    }else if (posibilidad0 < posibilidad1) {  
+                        puntosJugador1 ++;
+                        switch (puntosJugador1) {
+                            case 1: puntos1 = "15 "; break;
+                            case 2: puntos1 = "30 "; break;
+                            case 3: puntos1 = "40 "; break;
+                            case 5: puntos1 = "Win";game1 ++; break;
+                        }
+                        if (puntosJugador1 == 4) {
+                            if (puntos0.equals(" AD")) {
+                                puntosJugador1 = 3;
+                                puntosJugador0 = 3;
+                                puntos0 = " 40";
+                                puntos1 = "40 ";
+                            }else{
+                                puntos1 = "AD ";  
+                            }   
+                        }
                     }
-                    if (puntosJugador0 == 4) {                    
-                        if (puntos1.equals("AD ")) {
-                            puntosJugador1 = 3;
-                            puntosJugador0 = 3;
-                            puntos0 = " 40";
-                            puntos1 = "40 ";
-                        }else{
-                            puntos0 = " AD";
-                        }   
-                    }
-                }else if (posibilidad0 < posibilidad1) {  
-                    puntosJugador1 ++;
-                    switch (puntosJugador1) {
-                        case 1: puntos1 = "15 "; break;
-                        case 2: puntos1 = "30 "; break;
-                        case 3: puntos1 = "40 "; break;
-                        case 5: puntos1 = "Win";game1 ++; break;
-                    }
-                    if (puntosJugador1 == 4) {
-                        if (puntos0.equals(" AD")) {
-                            puntosJugador1 = 3;
-                            puntosJugador0 = 3;
-                            puntos0 = " 40";
-                            puntos1 = "40 ";
-                        }else{
-                            puntos1 = "AD ";  
-                        }   
-                    }
-                }
-                resultados += "\n"+puntos0 +"  -  "+ puntos1;
-            } while (puntosJugador0 <5 && puntosJugador1 <5 );
+                    resultados += "\n"+puntos0 +"  -  "+ puntos1;
+                } while (puntosJugador0 <5 && puntosJugador1 <5 );
 
-            resultados += "\n ---------\n Resultado\n "+ game0 + "  -  "+game1+" \n ---------\n";
-            set ++;
+                resultados += "\n ---------\n Resultado\n "+ game0 + "  -  "+game1+" \n ---------\n";
+                set ++;
+                
+                
+                
+                
+                if ( game0 >= this.cantSets || game1 >= this.cantSets ) {
+                    if (game0  > (game1 +1)) {
+                        ganadorTorneo = jugadores[0].getNombreJugador();
+                        bandera = true;
+                    }else if((game0 +1) < game1){
+                        ganadorTorneo = jugadores[1].getNombreJugador();
+                        bandera = true;
+                    }else{
+                        bandera = false;
+                    }
+                } 
+                
+            } while (!bandera); 
             
-            
-            
-            
-            if ( game0 >= this.cantSets || game1 >= this.cantSets ) {
-                if (game0  > (game1 +1)) {
-                    ganadorTorneo = jugadores[0].getNombreJugador();
-                    bandera = true;
-                }else if((game0 +1) < game1){
-                    ganadorTorneo = jugadores[1].getNombreJugador();
-                    bandera = true;
-                }else{
-                    System.out.println("No ganó ninguno");
-                    bandera = false;
-                }
-            } 
-        } while (!bandera); 
+            resultadosJugador0 += game0 + " ";
+            resultadosJugador1 += game1 + " ";
+            resultados += "\n-------------------------------------\n";
+        }
+
         
         resultados +="\nEl ganador del torneo es: "+ ganadorTorneo;
-        return resultados;
+        resultados +="\n" +jugadores[0].getNombreJugador() +": "+  resultadosJugador0 +"\n"+jugadores[1].getNombreJugador()+ ": " + resultadosJugador1+"\n";
+        return resultados ;
     }
     
     

@@ -44,8 +44,9 @@ public class Partido {
         do{
             System.out.println("¿Quiere jugar revancha?  si - no");
             revancha = sc.next().toLowerCase();
+            //revancha = "no";
             if(revancha.equals("si")){
-                System.out.println(t.getGanadorDelPunto()+ ", revancha finalizada.");
+                System.out.println(t.getGanadorDelPunto()+ "\nRevancha finalizada.\n");
                 revancha = "no";
             }
         }while(!revancha.equals("no"));
